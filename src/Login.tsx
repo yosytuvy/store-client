@@ -17,30 +17,30 @@ const Login = () => {
   return (
     <div>
       <TextField
-        label="דואר אלקטרוני"
+        label="email"
         variant="outlined"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <TextField
-        label="סיסמה"
+        label="password"
         type="password"
         variant="outlined"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
       <Button onClick={handleLogin} variant="contained">
-        התחברות
+        Login
       </Button>
 
       <Modal open={open} onClose={handleClose}>
         <div>
-          <p>התחברות בוצעה בהצלחה!</p>
+          <p>Login successfully!</p>
         </div>
       </Modal>
 
-      <Button onClick={() => console.log("מעבר לדף רישום")}>
-        מעבר לדף רישום
+      <Button onClick={() => console.log("Go to the registration page")}>
+        Go to the registration page
       </Button>
     </div>
   );
