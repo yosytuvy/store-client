@@ -226,7 +226,6 @@ const ResponsiveGrid = () => {
               <div>
                 {product.processor && `Processor: ${product.processor}`}
               </div>
-              {/* Add more details based on your product structure */}
             </Item>
           </Grid>
         ))}

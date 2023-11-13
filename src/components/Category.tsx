@@ -1,9 +1,9 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Filters from "./Filters";
-import PriceFilter from "./PriceFilter";
-import Products from "./products";
+import Filters from "./MUI components/Filters";
+import PriceFilter from "./MUI components/PriceFilter";
+import Products from "./Products";
 
 interface CategoryProp {
   title: string;
