@@ -3,6 +3,8 @@ import ROUTES from "./routerModel";
 import Login from "../features/users/pages/Login";
 import Signup from "../features/users/pages/Signup";
 import Category from "../features/products/pages/Category";
+import Product from "../features/products/pages/ProductPage";
+
 const Router = () => {
   return (
     <Routes>
@@ -14,6 +16,7 @@ const Router = () => {
           <Category title="Electrical products" filters={["1", "2", "3"]} />
         }
       />
+      <Route path={ROUTES.product} element={<Product />} />
     </Routes>
   );
 };
