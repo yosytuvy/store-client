@@ -16,7 +16,6 @@ const Category = ({ title, filters }: CategoryProp) => {
   // הגדרת פונקציה לטיפול בלחיצה על הכפתור
   const handleApplyFilterClick = () => {
     console.log("Apply Filtering clicked!");
-    // נוסיף פעולות נוספות שתרצה לבצע כאשר הכפתור ילחץ
   };
 
   return (
