@@ -45,8 +45,10 @@ function Select(props: SelectProps<string, false>) {
   return <BaseSelect {...props} slots={slots} />;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const OptionGroup = React.forwardRef(function CustomOptionGroup(
   props: OptionGroupProps,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: React.ForwardedRef<any>
 ) {
   const slots: OptionGroupProps["slots"] = {
@@ -82,12 +84,13 @@ const grey = {
 };
 
 const Button = React.forwardRef(function Button<
-  TValue extends {},
+  TValue extends object,
   Multiple extends boolean
 >(
   props: SelectRootSlotProps<TValue, Multiple>,
   ref: React.ForwardedRef<HTMLButtonElement>
 ) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { ownerState, ...other } = props;
   return (
     <StyledButton type="button" {...other} ref={ref}>

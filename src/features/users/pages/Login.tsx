@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { TextField, Button, Modal } from "@mui/material";
-import { isValidEmail } from "../helpers/validations";
+import { useState } from "react";
+import { TextField, Button, Modal, Box, Typography, Stack } from "@mui/material";
+import { isValidEmail } from "../../../helpers/validations";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,10 +19,8 @@ const Login = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
+    <Stack
+      sx={{
         alignItems: "center",
         marginTop: "50px",
         padding: "20px",
@@ -62,7 +60,7 @@ const Login = () => {
       </Button>
 
       <Modal open={open} onClose={handleClose}>
-        <div
+        <Box
           style={{
             backgroundColor: "white",
             padding: "20px",
@@ -70,14 +68,14 @@ const Login = () => {
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <p>Login successfully!</p>
-        </div>
+          <Typography component="p" variant="body1">Login successfully!</Typography>
+        </Box>
       </Modal>
 
       <Button onClick={() => console.log("Go to the registration page")}>
         Go to the registration page
       </Button>
-    </div>
+    </Stack>
   );
 };
 

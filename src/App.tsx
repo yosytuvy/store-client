@@ -1,17 +1,15 @@
 import "./App.css";
-import AppHeader from "./components/AppHeader";
-import Category from "./components/Category";
-// import Login from "./components/Login";
+import Header from "./features/general/components/Header";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./router/Router";
 
 function App() {
   return (
     <>
-      <AppHeader />
-
-      <Category title="Electrical products" filters={["1", "2", "3"]} />
-
-      {/* <Register /> */}
-      {/* <Login /> */}
+    <Header/>
+    <BrowserRouter>
+     <Router/>
+    </BrowserRouter>
     </>
   );
 }

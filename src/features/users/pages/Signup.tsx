@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { TextField, Button, Modal } from "@mui/material";
+import { useState } from "react";
+import { TextField, Button, Modal, Stack, Box } from "@mui/material";
 import {
   isValidEmail,
   isValidPassword,
   isValidPasswordConfirmation,
-} from "../helpers/validations";
+} from "../../../helpers/validations";
 
-const Register = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -40,7 +40,7 @@ const Register = () => {
   };
 
   return (
-    <div
+    <Stack
       style={{
         display: "flex",
         flexDirection: "column",
@@ -95,7 +95,7 @@ const Register = () => {
       </Button>
 
       <Modal open={open} onClose={handleClose}>
-        <div
+        <Box
           style={{
             backgroundColor: "white",
             padding: "20px",
@@ -104,14 +104,14 @@ const Register = () => {
           }}
         >
           <p>Registration succeeded!</p>
-        </div>
+        </Box>
       </Modal>
 
       <Button onClick={() => console.log("Go to login page")}>
         Go to login page
       </Button>
-    </div>
+    </Stack>
   );
 };
 
-export default Register;
+export default Signup;
