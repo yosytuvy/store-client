@@ -3,6 +3,6 @@ const ROUTES = {
     signup: "/signup",
     category: "/category",
     product: "/productPage"
-}
+};
 
-export default ROUTES
+export default ROUTES;
