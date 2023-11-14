@@ -6,10 +6,10 @@ import Router from "./router/Router";
 function App() {
   return (
     <>
-    <Header/>
-    <BrowserRouter>
-     <Router/>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <Router />
+      </BrowserRouter>
     </>
   );
 }

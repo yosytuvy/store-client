@@ -1,7 +1,8 @@
 const ROUTES = {
-    login: "/login",
+    login: "/login/:signed?",
     signup: "/signup",
-    category: "/category"
+    category: "/category",
+    product: "/productPage"
 }
 
 export default ROUTES

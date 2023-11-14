@@ -1,21 +1,25 @@
+import axios from "axios";
 import { useState } from "react";
-import { TextField, Button, Modal, Stack, Box } from "@mui/material";
+import { TextField, Button, Stack } from "@mui/material";
 import {
   isValidEmail,
   isValidPassword,
   isValidPasswordConfirmation,
 } from "../../../helpers/validations";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../router/routerModel";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [open, setOpen] = useState(false);
   const [isValidEmailInput, setIsValidEmailInput] = useState(true);
   const [isValidPasswordInput, setIsValidPasswordInput] = useState(true);
   const [isValidPasswordMatch, setIsValidPasswordMatch] = useState(true);
-
-  const handleRegister = () => {
+  const navigate = useNavigate();
+  const navigateTo = (to: string) => navigate(to);
+  
+  const handleRegister = async () => {
     const isEmailValid = isValidEmail(email);
     const isPasswordValid = isValidPassword(password);
     const isPasswordConfirmationValid = isValidPasswordConfirmation(
@@ -28,15 +32,20 @@ const Signup = () => {
     setIsValidPasswordMatch(isPasswordConfirmationValid);
 
     if (isEmailValid && isPasswordValid && isPasswordConfirmationValid) {
-      setOpen(true);
+      try {
+        const response = await axios.post(
+          "http://localhost:8181/api/users/signup",
+          {
+            email: email,
+            password: password,
+          }
+        );
+        if (response.status === 200)
+          return navigateTo(`${ROUTES.login}/signed`);
+      } catch (error) {
+        navigateTo("*");
+      }
     }
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setIsValidEmailInput(true);
-    setIsValidPasswordInput(true);
-    setIsValidPasswordMatch(true);
   };
 
   return (
@@ -93,20 +102,6 @@ const Signup = () => {
       >
         Register
       </Button>
-
-      <Modal open={open} onClose={handleClose}>
-        <Box
-          style={{
-            backgroundColor: "white",
-            padding: "20px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <p>Registration succeeded!</p>
-        </Box>
-      </Modal>
-
       <Button onClick={() => console.log("Go to login page")}>
         Go to login page
       </Button>

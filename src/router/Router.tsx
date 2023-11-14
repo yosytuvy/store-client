@@ -3,6 +3,8 @@ import ROUTES from "./routerModel";
 import Login from "../features/users/pages/Login";
 import Signup from "../features/users/pages/Signup";
 import Category from "../features/products/pages/Category";
+import HomePage from "../pages/HomePage";
+import ErrorPage from "../pages/ErrorPage";
 const Router = () => {
   return (
     <Routes>
@@ -14,6 +16,8 @@ const Router = () => {
           <Category title="Electrical products" filters={["1", "2", "3"]} />
         }
       />
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };
