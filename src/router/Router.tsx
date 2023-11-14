@@ -3,6 +3,8 @@ import ROUTES from "./routerModel";
 import Login from "../features/users/pages/Login";
 import Signup from "../features/users/pages/Signup";
 import Category from "../features/products/pages/Category";
+import HomePage from "../pages/HomePage";
+import ErrorPage from "../pages/ErrorPage";
 import Product from "../features/products/pages/ProductPage";
 
 const Router = () => {
@@ -17,6 +19,8 @@ const Router = () => {
         }
       />
       <Route path={ROUTES.product} element={<Product />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };

@@ -1,21 +1,38 @@
+import axios from "axios";
 import { useState } from "react";
-import { TextField, Button, Modal, Box, Typography, Stack } from "@mui/material";
-import { isValidEmail } from "../../../helpers/validations";
+import { TextField, Button, Stack } from "@mui/material";
+import { isValidEmail, isValidPassword } from "../../../helpers/validations";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../../redux/hooks";
+import { setUserConnected } from "../slice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [open, setOpen] = useState(false);
   const [isValidEmailInput, setIsValidEmailInput] = useState(true);
+  const { singed } = useParams();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (isValidEmail(email)) {
-      setOpen(true);
+  const handleLogin = async () => {
+    try {
+      if (isValidEmail(email) || !isValidPassword(password)) {
+        const { data } = await axios.post(
+          "http://localhost:8181/api/users/login",
+          {
+            email: email,
+            password: password,
+          }
+        );
+        if (!data) throw new Error();
+        localStorage.setItem("token", data as string);
+        dispatch(setUserConnected());
+        if (singed) return navigate(-2);
+        return navigate(-1);
+      }
+    } catch (error) {
+      navigate("*");
     }
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -58,20 +75,6 @@ const Login = () => {
       >
         Login
       </Button>
-
-      <Modal open={open} onClose={handleClose}>
-        <Box
-          style={{
-            backgroundColor: "white",
-            padding: "20px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <Typography component="p" variant="body1">Login successfully!</Typography>
-        </Box>
-      </Modal>
-
       <Button onClick={() => console.log("Go to the registration page")}>
         Go to the registration page
       </Button>
